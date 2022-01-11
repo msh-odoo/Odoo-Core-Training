@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>    
+        <record id="course_course_tree" model="ir.ui.view">
+            <field name="name">course.course.tree</field>
+            <field name="model">course.course</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="state"/>
+                    <field name="active" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="course_course_form" model="ir.ui.view">
+            <field name="name">course.course.form</field>
+            <field name="model">course.course</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_courses">
+   		    <field name="name">Courses</field>
+            <field name="res_model">course.course</field>
+ 		    <field name="view_mode">tree,form</field>
+ 	    </record>
+
+        <menuitem name="Open Academy" id="menu_openacademy_root"/>
+        <menuitem name="Course" id="menu_course" parent="menu_openacademy_root"/>
+        <menuitem name="Course" id="menu_course_action" parent="menu_course" action="action_courses"/>
+
+    </data>
+</odoo>

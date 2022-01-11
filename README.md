@@ -1,1 +1,1 @@
-
+Odoo Core Training

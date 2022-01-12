@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>    
+    <data>
         <record id="course_course_tree" model="ir.ui.view">
             <field name="name">course.course.tree</field>
             <field name="model">course.course</field>
@@ -20,8 +20,18 @@
                 <form>
                     <sheet>
                         <group>
-                            <field name="name"/>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                            <group>
+                                <field name="state" />
+                            </group>
                         </group>
+                        <notebook>
+                            <page string="Sessions">
+                                <field name="session_ids"/>
+                            </page>
+                        </notebook>
                     </sheet>
                 </form>
             </field>

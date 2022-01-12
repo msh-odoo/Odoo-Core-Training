@@ -19,6 +19,7 @@ who attends those sessions.""",
         # 'security/crm_security.xml',
         'security/ir.model.access.csv',
         'views/course_views.xml',
+        'views/session_views.xml',
     ],
     'demo': [
     ],

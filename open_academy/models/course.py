@@ -7,3 +7,4 @@ class Course(models.Model):
     description = fields.Html(string="Course Details", copy=False, states={'new': [('readonly', False)]}, readonly=True)
     state = fields.Selection([('new', 'New'), ('confirm', 'Confirm'), ('cancel', 'Cancel')], default="new")
     active = fields.Boolean(default=True)
+    session_ids = fields.One2many('course.session', 'course_id', string="Sessions")

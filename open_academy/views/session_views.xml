@@ -50,25 +50,49 @@
             </field>
         </record>
 
-    <record id="course_session_search" model="ir.ui.view">
-        <field name="name">course.session.search</field>
-        <field name="model">course.session</field>
-        <field name="arch" type="xml">
-            <search>
-                <field name="duration"/>
-                <filter name="future_sessions" string="Future Sessions"
-                    domain="[('start_datetime', '&gt;=', datetime.datetime.combine(context_today(), datetime.time(0,0,0)))]"/>
-                <group>
-                    <filter name="course_groups" string="Course" context="{'group_by': 'course_id'}" />
-                </group>
-            </search>
-        </field>
-    </record>
+        <record id="course_session_search" model="ir.ui.view">
+            <field name="name">course.session.search</field>
+            <field name="model">course.session</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="duration"/>
+                    <field name="name"/>
+                    <filter name="future_sessions" string="Future Sessions"
+                        domain="[('start_datetime', '&gt;=', datetime.datetime.combine(context_today(), datetime.time(0,0,0)))]"/>
+                    <group>
+                        <filter name="course_groups" string="Course" context="{'group_by': 'course_id'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="course_session_calendar" model="ir.ui.view">
+            <field name="name">course.session.calendar</field>
+            <field name="model">course.session</field>
+            <field name="arch" type="xml">
+                <calendar color="course_id" date_start="start_datetime">
+                    <field name="name"/>
+                    <field name="instructor_id"/>
+                    <field name="course_id" filters="1" />
+                </calendar>
+            </field>
+        </record>
+
+        <record id="course_session_graph" model="ir.ui.view">
+            <field name="name">course.session.graph</field>
+            <field name="model">course.session</field>
+            <field name="arch" type="xml">
+                <graph type="bar">
+                    <field name="course_id"/>
+                </graph>
+            </field>
+        </record>
 
         <record model="ir.actions.act_window" id="action_sessions">
    		    <field name="name">Sessions</field>
             <field name="res_model">course.session</field>
- 		    <field name="view_mode">tree,form</field>
+ 		    <field name="view_mode">tree,form,calendar,graph</field>
+            <field name="context">{'search_default_future_sessions': 1, 'default_name': 'Test Course'}</field>
  	    </record>
 
         <menuitem name="Session" id="menu_session" parent="menu_openacademy_root"/>

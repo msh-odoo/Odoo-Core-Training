@@ -27,7 +27,7 @@ class Session(models.Model):
     name = fields.Char()
     course_id = fields.Many2one('course.course', required=True, string="Course")
     attendee_ids = fields.Many2many('res.partner')
-    instructor_id = fields.Many2one('res.partner')
+    instructor_id = fields.Many2one('res.partner', default=lambda self: self.env.user.partner_id.id)
     start_datetime = fields.Datetime()
     end_datetime = fields.Datetime()
     duration = fields.Float(compute=_get_duration, inverse=_set_duration, search=_search_duration)
@@ -47,7 +47,11 @@ class Session(models.Model):
             for attendee in session.attendee_ids:
                 print ("Attendee ::: ", attendee.name)
 
+    @api.model_create_multi
     def create(self, vals_list):
         res = super(Session, self).create(vals_list)
-        # my logic here
+        for record in res:
+            if record.end_datetime < record.start_datetime:
+                raise UserError("You can not have End Datetime lesser than Start Datetime")
+
         return res

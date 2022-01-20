@@ -18,14 +18,19 @@
             <field name="model">course.course</field>
             <field name="arch" type="xml">
                 <form>
+                    <header>
+                        <button class="btn-primary" states="new" name="action_confirm" type="object" string="Confirm" />
+                        <button class="btn-primary" attrs="{'invisible': [('state', '!=', 'confirm')]}" name="action_cancel" type="object" string="Cancel" />
+                        <field name="state" widget="statusbar" statusbar_visible="new,confirm,cancel"/>
+                    </header>
                     <sheet>
                         <group>
                             <group>
                                 <field name="name"/>
                             </group>
-                            <group>
+                            <!-- <group>
                                 <field name="state" />
-                            </group>
+                            </group> -->
                         </group>
                         <notebook>
                             <page string="Sessions">
@@ -36,6 +41,18 @@
                 </form>
             </field>
         </record>
+
+        <!-- <record id="course_course_kanban" model="ir.ui.view">
+            <field name="name">course.course.kanban</field>
+            <field name="model">course.course</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="name"/>
+                    <field name="state"/>
+
+                </kanban>
+            </field>
+        </record> -->
 
         <record model="ir.actions.act_window" id="action_courses">
    		    <field name="name">Courses</field>

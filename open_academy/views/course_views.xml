@@ -33,8 +33,10 @@
                             </group> -->
                         </group>
                         <notebook>
-                            <page string="Sessions">
-                                <field name="session_ids"/>
+                            <page name="sessions" string="Sessions">
+                                <group>
+                                    <field name="session_ids"/>
+                                </group>
                             </page>
                         </notebook>
                     </sheet>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="course_course_form_inherited" model="ir.ui.view">
+            <field name="name">course.course.form.inherited</field>
+            <field name="model">course.course</field>
+            <field name="inherit_id" ref="open_academy.course_course_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='sessions']" position="attributes">
+                    <attribute name="string">Course Sessions</attribute>
+                </xpath>
+                <xpath expr="//page[@name='sessions']/group/field[@name='session_ids']" position="attributes">
+                    <attribute name="nolabel">1</attribute>
+                </xpath>
+                <xpath expr="//page[@name='sessions']" position="after">
+                    <page name="internal_details" string="Internal Details">
+                        <field name="internal_details"/>
+                    </page>
+                </xpath>
+                <!-- <field name="name" position="after">
+                    <field name="internal_details"/>
+                </field> -->
+            </field>
+        </record>
+
+        <record id="crash_course_tree" model="ir.ui.view">
+            <field name="name">crash.course.tree</field>
+            <field name="model">crash.course</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="crash_course_form" model="ir.ui.view">
+            <field name="name">crash.course.form</field>
+            <field name="model">crash.course</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="sessions" string="Sessions">
+                                <field name="session_ids" nolabel="1"/>
+                            </page>
+                            <page name="additional_details" string="Addtional Details">
+                                <field name="additional_details" />
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_crash_courses">
+   		    <field name="name">Crash Courses</field>
+            <field name="res_model">crash.course</field>
+ 		    <field name="view_mode">tree,form</field>
+ 	    </record>
+
+        <menuitem name="Crash Course" id="menu_course" parent="open_academy.menu_openacademy_root" action="action_crash_courses"/>
+
+    </data>
+</odoo>

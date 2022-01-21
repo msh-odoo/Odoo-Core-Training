@@ -13,13 +13,11 @@ This module extends Open Academy and improves few process""",
     'website': 'https://www.odoo.com/app/crm',
     'depends': [
         'mail',
-        'open_academy'
+        'open_academy',
     ],
     'data': [
-        # 'security/crm_security.xml',
-        # 'security/ir.model.access.csv',
-        # 'views/course_views.xml',
-        # 'views/session_views.xml',
+        'security/ir.model.access.csv',
+        'views/course_view.xml',
     ],
     'demo': [
     ],

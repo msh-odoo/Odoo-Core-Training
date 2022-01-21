@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_open_academy_extended_crash_course_base_user,open.academy.extended.crash.course.base.user,model_crash_course,base.group_user,1,1,1,1

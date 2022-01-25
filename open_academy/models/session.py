@@ -51,7 +51,6 @@ class Session(models.Model):
     def create(self, vals_list):
         res = super(Session, self).create(vals_list)
         for record in res:
-            if record.end_datetime < record.start_datetime:
+            if record.end_datetime and record.start_datetime and record.end_datetime < record.start_datetime:
                 raise UserError("You can not have End Datetime lesser than Start Datetime")
-
         return res

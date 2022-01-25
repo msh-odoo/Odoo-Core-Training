@@ -6,6 +6,9 @@
             <field name="model">course.session</field>
             <field name="arch" type="xml">
                 <tree>
+                    <header>
+                        <button name="%(open_academy.action_view_session_wizard)d" type="action" string="Assign Instructor"/>
+                    </header>
                     <field name="name" />
                     <field name="attendee_ids" widget="many2many_tags"/>
                     <field name="start_datetime"/>

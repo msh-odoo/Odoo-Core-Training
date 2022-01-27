@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record id="session_view_tree" model="ir.ui.view">
+            <field name="name">course.session.view.tree</field>
+            <field name="model">course.session</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="start_datetime"/>
+                    <field name="end_datetime"/>
+                    <field name="course_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="session_view_form" model="ir.ui.view">
+            <field name="name">course.session.view.form</field>
+            <field name="model">course.session</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="course_id"/>
+                            </group>
+                            <group>
+                                <field name="start_datetime"/>
+                                <field name="end_datetime"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="attendee_ids" widget="many2many_tags"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</odoo>

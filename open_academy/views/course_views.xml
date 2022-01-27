@@ -35,7 +35,7 @@
                         <notebook>
                             <page name="sessions" string="Sessions">
                                 <group>
-                                    <field name="session_ids">
+                                    <field name="session_ids" context="{'default_name': name}">
                                         <tree editable="bottom">
                                             <field name="name"/>
                                             <field name="attendee_ids" widget="many2many_tags"/>

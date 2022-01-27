@@ -18,9 +18,9 @@ who attends those sessions.""",
     'data': [
         # 'security/crm_security.xml',
         'security/ir.model.access.csv',
+        'wizard/session_wizard_views.xml',
         'views/course_views.xml',
         'views/session_views.xml',
-        'wizard/session_wizard_views.xml',
     ],
     'demo': [
     ],

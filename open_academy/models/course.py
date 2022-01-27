@@ -17,9 +17,10 @@ class Course(models.Model):
     def name_get(self):
         final_result = []
         result = super().name_get()
+        if not self.env.context.get('show_state'):
+            return result
         for item in result:
             final_result.append((item[0], item[1] + " (" + self.browse(item[0]).state + ")"))
-        print ("\n\nresult ::: ", final_result)
         return final_result
 
     @api.constrains('state', 'session_ids')

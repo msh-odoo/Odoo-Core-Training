@@ -43,13 +43,18 @@ class Session(models.Model):
             raise UserError(_("Instructor should not be Attendee of the session."))
 
     def action_confirm(self):
+        print ("\n\nContext in action_confirm :::: ", self.env.context)
         for session in self:
             for attendee in session.attendee_ids:
                 print ("Attendee ::: ", attendee.name)
 
     @api.model_create_multi
     def create(self, vals_list):
+        print ("\n\nContext in create :::: ", self.env.context)
         res = super(Session, self).create(vals_list)
+        if self.env.context.get('my_session'):
+            # add your bussiness logic here
+            pass
         for record in res:
             if record.end_datetime and record.start_datetime and record.end_datetime < record.start_datetime:
                 raise UserError("You can not have End Datetime lesser than Start Datetime")

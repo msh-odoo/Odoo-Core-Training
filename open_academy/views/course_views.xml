@@ -5,7 +5,7 @@
             <field name="name">course.view.tree</field>
             <field name="model">course.course</field>
             <field name="arch" type="xml">
-                <tree>
+                <tree multi_edit="1">
                     <field name="name"/>
                     <field name="state"/>
                 </tree>
@@ -17,14 +17,18 @@
             <field name="model">course.course</field>
             <field name="arch" type="xml">
                 <form>
+                    <header>
+                        <!-- <button name="%(action_session)d" type="action" string="Sessions" class="btn-primary" /> -->
+                        <button name="action_confirm" type="object" string="Confirm" class="btn-primary" />
+                        <field name="state" widget="statusbar" statusbar_visible="new,confirm,cancel"/>
+                    </header>
                     <sheet>
                         <group>
                             <group>
                                 <field name="name"/>
-                                <field name="active"/>
                             </group>
                             <group>
-                                <field name="state"/>
+                                <field name="active"/>
                             </group>
                         </group>
                         <notebook>

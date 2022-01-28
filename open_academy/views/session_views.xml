@@ -10,6 +10,7 @@
                     <field name="start_datetime"/>
                     <field name="end_datetime"/>
                     <field name="course_id"/>
+                    <field name="duration"/>
                 </tree>
             </field>
         </record>
@@ -24,10 +25,12 @@
                             <group>
                                 <field name="name"/>
                                 <field name="course_id"/>
+                                <field name="course_name"/>
                             </group>
                             <group>
                                 <field name="start_datetime"/>
                                 <field name="end_datetime"/>
+                                <field name="duration"/>
                             </group>
                         </group>
                         <group>
@@ -38,5 +41,16 @@
             </field>
         </record>
 
+        <record id="action_session" model="ir.actions.act_window">
+            <field name="name">Sessions</field>
+            <field name="res_model">course.session</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem
+            id="open_academy_sessions"
+            name="Sessions"
+            parent="open_academy_root"
+            action="action_session"/>
     </data>
 </odoo>

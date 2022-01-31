@@ -5,6 +5,7 @@ from dateutil.relativedelta import relativedelta
 
 class Session(models.Model):
     _name = "course.session"
+    _description = "Session"
 
     @api.depends('start_datetime', 'end_datetime')
     def _get_duration(self):

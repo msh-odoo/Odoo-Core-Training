@@ -16,7 +16,7 @@ who attends those sessions.""",
         'mail',
     ],
     'data': [
-        # 'security/crm_security.xml',
+        'security/open_academy_security.xml',
         'security/ir.model.access.csv',
         'wizard/session_wizard_views.xml',
         'views/course_views.xml',

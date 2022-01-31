@@ -3,6 +3,7 @@ from odoo.exceptions import UserError
 
 class Course(models.Model):
     _name = "course.course"
+    _description = "Course"
 
     name = fields.Char(help="Course Name", required=True)
     description = fields.Html(string="Course Details", copy=False, states={'new': [('readonly', False)]}, readonly=True)
@@ -30,7 +31,7 @@ class Course(models.Model):
                 raise UserError(_("You can not confirm Course if there are no sessions."))
 
     def action_confirm(self):
-        self.write({'state': 'confirm'})
+        return self.write({'state': 'confirm'})
 
     def action_cancel(self):
-        self.write({'state': 'cancel'})
+        return self.write({'state': 'cancel'})

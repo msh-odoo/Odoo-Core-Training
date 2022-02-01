@@ -1,4 +1,5 @@
-from odoo import api, models, fields
+from odoo import _, api, models, fields
+from odoo.exceptions import UserError
 
 class Course(models.Model):
     _name = "course.course"
@@ -10,11 +11,31 @@ class Course(models.Model):
 
     session_ids = fields.One2many('course.session', 'course_id', string="Sessions")
 
+    _sql_constraints = [
+        ('course_value_unique', 'unique(name)', "Couse name should be unique.")
+    ]
+
+    @api.constrains('session_ids', 'state')
+    def _check_sessions(self):
+        print ("\n\nInside _check_sessions ::: ", self)
+        for record in self:
+            if record.state and record.state == 'confirm' and not len(record.session_ids):
+                raise UserError(_("You can not confirm Course if there are no Sessions."))
+
     def action_confirm(self):
-        self.state
-        return True
+        return self.with_context({'test': True}).write({'state': 'confirm'})
 
     def write(self, vals):
+        print ("\n\ncontext ::: ", self.env.context)
         for record in self:
             print ("\n\nrecord name is ::: ", record.name)
+        if self.env.context.get('test'):
+            pass
+            # Your logic to perform something
         return super().write(vals)
+
+    def create(self, vals_list):
+        # where vals_list will be list of dictionaries e.g. [{'name': 'Maths', 'state': 'new'}, {'name': 'Stat', 'state': 'new'}]
+        return super().create(vals_list)
+
+    

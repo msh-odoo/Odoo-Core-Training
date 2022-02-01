@@ -20,10 +20,23 @@ class Session(models.Model):
         datas = self.env.cr.fetchall()
         return [('id', 'in', [data[0] for data  in datas])]
 
-    name = fields.Char()
+    name = fields.Char(string="Name", required=True)
+    description = fields.Html()
     start_datetime = fields.Datetime()
     end_datetime = fields.Datetime()
     course_id = fields.Many2one('course.course', string="Course")
-    attendee_ids = fields.Many2many('res.partner', striing="Attendees")
+    instructor_id = fields.Many2one('res.partner')
+    attendee_ids = fields.Many2many('res.partner', striing="Attendees", copy=False)
     duration = fields.Float(compute="_get_duration", inverse="_inverse_duration", search="_search_duration")
     course_name = fields.Char(related="course_id.name")
+
+    @api.onchange('course_id')
+    def _onchange_course_id(self):
+        if self.course_id:
+            self.description = self.course_id.description
+            self.instructor_id = self.env['res.partner'].search([], limit=1)
+
+    @api.onchange('instructor_id')
+    def _onchange_instructor_id(self):
+        if self.instructor_id:
+            self.name = self.instructor_id.name + '\'s Session'

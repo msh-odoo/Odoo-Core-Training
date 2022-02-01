@@ -44,6 +44,23 @@
             </field>
         </record>
 
+        <record id="course_view_search" model="ir.ui.view">
+            <field name="name">course.view.search</field>
+            <field name="model">course.course</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="description"/>
+                    <filter name="confirm_courses" string="Confirm" domain="[('state', '=', 'confirm')]"/>
+                    <separator/>
+                    <filter name="new_courses" string="New" domain="[('state', '=', 'new')]"/>
+                    <group>
+                        <filter name="groupby_state" string="State" context="{'group_by': 'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
         <record id="action_course" model="ir.actions.act_window">
             <field name="name">Course</field>
             <field name="res_model">course.course</field>

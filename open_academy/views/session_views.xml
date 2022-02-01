@@ -5,11 +5,12 @@
             <field name="name">course.session.view.tree</field>
             <field name="model">course.session</field>
             <field name="arch" type="xml">
-                <tree>
+                <tree multi_edit="1">
                     <field name="name"/>
                     <field name="start_datetime"/>
                     <field name="end_datetime"/>
                     <field name="course_id"/>
+                    <field name="instructor_id"/>
                     <field name="duration"/>
                 </tree>
             </field>
@@ -26,6 +27,7 @@
                                 <field name="name"/>
                                 <field name="course_id"/>
                                 <field name="course_name"/>
+                                <field name="instructor_id"/>
                             </group>
                             <group>
                                 <field name="start_datetime"/>
@@ -35,6 +37,9 @@
                         </group>
                         <group>
                             <field name="attendee_ids" widget="many2many_tags"/>
+                        </group>
+                        <group>
+                            <field name="description"/>
                         </group>
                     </sheet>
                 </form>

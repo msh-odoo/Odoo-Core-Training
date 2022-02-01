@@ -46,6 +46,9 @@
                                     </field>
                                 </group>
                             </page>
+                            <page string="Description" name="description">
+                                <field name="description"/>
+                            </page>
                         </notebook>
                     </sheet>
                 </form>

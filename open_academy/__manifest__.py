@@ -18,9 +18,11 @@ who attends those sessions.""",
     'data': [
         'security/open_academy_security.xml',
         'security/ir.model.access.csv',
+        'data/open_academy_data.xml',
         'wizard/session_wizard_views.xml',
         'views/course_views.xml',
         'views/session_views.xml',
+        'views/open_academy_templates.xml',
     ],
     'demo': [
     ],

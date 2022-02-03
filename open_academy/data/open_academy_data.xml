@@ -6,5 +6,12 @@
             <field name="description">&lt;p&gt;Hello World&lt;/p&gt;</field>
             <field name="state">new</field>
         </record>
+
+        <record id="menu_course" model="website.menu">
+            <field name="name">Course</field>
+            <field name="url">/course</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence" type="int">20</field>
+        </record>
     </data>
 </odoo>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="course_details_extended" name="Course Details Extended" inherit_id="open_academy.course_details">
+        <xpath expr="//div[contains(@class, 'container')]/div/div[1]/div[2]" position="replace">
+        </xpath>
+        <xpath expr="//div[contains(@class, 'container')]" position="attributes">
+            <attribute name="style">background: grey;</attribute>            
+        </xpath>
+    </template>
+</odoo>

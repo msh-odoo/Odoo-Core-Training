@@ -18,6 +18,7 @@ This module extends Open Academy and improves few process""",
     'data': [
         'security/ir.model.access.csv',
         'views/course_view.xml',
+        'views/open_academy_extended_templates.xml',
     ],
     'demo': [
     ],

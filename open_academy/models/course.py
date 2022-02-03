@@ -5,9 +5,14 @@ class Course(models.Model):
     _name = "course.course"
     _description = "Course"
 
+    _inherit = [
+        'image.mixin',
+    ]
+
     name = fields.Char(help="Course Name", required=True)
     description = fields.Html(string="Course Details", copy=False, states={'new': [('readonly', False)]}, readonly=True)
     state = fields.Selection([('new', 'New'), ('confirm', 'Confirm'), ('cancel', 'Cancel')], default="new")
+    # image = fields.Binary('Course Image')
     active = fields.Boolean(default=True)
     session_ids = fields.One2many('course.session', 'course_id', string="Sessions")
 

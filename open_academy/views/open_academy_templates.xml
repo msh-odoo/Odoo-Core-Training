@@ -41,4 +41,74 @@
         </t>
     </template>
 
+    <template id="courses_static" name="Courses">
+        <t t-call="website.layout">
+            <div class="container">
+                <div class="text-center font-weight-bold">Hello World</div>
+            </div>
+        </t>
+    </template>
+
+    <template id="courses" name="Courses">
+        <t t-call="website.layout">
+            <div class="container">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <th>Sequence</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>State</th>
+                        </thead>
+                        <tbody>
+                            <t t-set="sequence" t-value="0"/>
+                            <t t-foreach="courses" t-as="course">
+                                <t t-set="sequence" t-value="sequence + 1"/>
+                                <!-- <tr t-att-class="sequence % 2 == 0 and 'o_even' or ''"> -->
+                                <tr t-attf-style="#{sequence % 2 == 0 and 'background: grey;' or ''}">
+                                    <td><t t-out="sequence" /></td>
+                                    <td>
+                                        <a t-attf-href="/course/#{course.id}">
+                                            <t t-out="course.name" />
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <t t-if="course.description" t-out="course.description" />
+                                        <t t-else="">No Description Available</t>
+                                    </td>
+                                    <td><span t-field="course.state"/></td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="course_description" name="Course Description" inherit_id="open_academy.course_details" customize_show="True">
+        <xpath expr="//div[contains(@class, 'o_course_details')]" position="inside">
+            <div t-field="course.description"></div>
+        </xpath>
+    </template>
+
+    <template id="course_details" name="course_details">
+        <div t-call="website.layout">
+            <div class="container">
+                <div class="row">
+                    <div class="col-4">
+                        <div t-attf-style="padding-top: 50%; background-image: url(/web/image/course.course/#{course.id}/image_1024); background-size: cover; background-position:center"/>
+                        <div>
+                            <div>State of the Course</div>
+                            <div t-field="course.state"/>
+                        </div>
+                    </div>
+                    <div class="col-8 o_course_details">
+                        <div class="text-center font-weight-bold"><span t-field="course.name"/></div>
+                    </div>
+                </div>
+            </div>
+        </div>        
+    </template>
+
 </odoo>

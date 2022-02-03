@@ -14,6 +14,7 @@ who attends those sessions.""",
     'website': 'https://www.odoo.com/app/crm',
     'depends': [
         'mail',
+        'website',
     ],
     'data': [
         'security/open_academy_security.xml',

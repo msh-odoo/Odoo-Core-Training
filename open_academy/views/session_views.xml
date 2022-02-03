@@ -46,10 +46,39 @@
             </field>
         </record>
 
+        <record id="session_view_search" model="ir.ui.view">
+            <field name="name">course.session.view.search</field>
+            <field name="model">course.session</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="course_id"/>
+                    <field name="instructor_id"/>
+                    <filter name="future" string="Future Sessions" domain="[('start_datetime', '&gt;=', datetime.datetime.combine(context_today(), datetime.time(0,0,0)))]"/>
+                    <group>
+                        <filter name="groupby_course" string="Course" context="{'group_by': 'course_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="session_view_calendar" model="ir.ui.view">
+            <field name="name">course.session.view.calendar</field>
+            <field name="model">course.session</field>
+            <field name="arch" type="xml">
+                <calendar string="Sessions" date_start="start_datetime" date_stop="end_datetime" color="course_id">
+                    <field name="name"/>
+                    <field name="course_id" filters="1"/>
+                    <field name="instructor_id"/>
+                    <field name="attendee_ids" widget="many2many_tags"/>
+                </calendar>
+            </field>
+        </record>
+
         <record id="action_session" model="ir.actions.act_window">
             <field name="name">Sessions</field>
             <field name="res_model">course.session</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">tree,form,calendar</field>
         </record>
 
         <menuitem

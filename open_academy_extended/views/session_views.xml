@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record id="session_view_form_inherited" model="ir.ui.view">
+            <field name="name">course.view.tree.inherited</field>
+            <field name="model">course.session</field>
+            <field name="inherit_id" ref="open_academy.session_view_form"/>
+            <field name="arch" type="xml">
+                <!-- <xpath expr="//field[@name='course_id']" position="attributes">
+                    <attribute name="required">1</attribute>
+                </xpath> -->
+                <!-- position can be replace, inside, after, before, attributes -->
+                <field name="course_id" position="attributes">
+                    <attribute name="required">1</attribute>
+                </field>
+                <field name="course_name" position="replace"></field>
+            </field>
+        </record>
+    </data>
+</odoo>

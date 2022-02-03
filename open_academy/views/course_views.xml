@@ -32,8 +32,39 @@
                             </group>
                         </group>
                         <notebook>
-                            <page name="sessions" string="Sessions">
-                                <field name="session_ids"/>
+                            <page string="Sessions">
+                                <field name="session_ids">
+                                    <tree>
+                                        <field name="name"/>
+                                        <field name="start_datetime"/>
+                                        <field name="end_datetime"/>
+                                        <field name="course_id"/>
+                                        <field name="instructor_id"/>
+                                        <field name="duration"/>
+                                    </tree>
+                                    <form>
+                                        <sheet>
+                                            <group>
+                                                <group>
+                                                    <field name="name"/>
+                                                    <field name="instructor_id"/>
+                                                    <field name="course_id" invisible="1"/>
+                                                </group>
+                                                <group>
+                                                    <field name="start_datetime"/>
+                                                    <field name="end_datetime"/>
+                                                    <field name="duration"/>
+                                                </group>
+                                            </group>
+                                            <group>
+                                                <field name="attendee_ids" widget="many2many_tags"/>
+                                            </group>
+                                            <group>
+                                                <field name="description"/>
+                                            </group>
+                                        </sheet>
+                                    </form>
+                                </field>
                             </page>
                             <page name="details" string="Details">
                                 <field name="description"/>
@@ -67,9 +98,6 @@
             <field name="view_mode">tree,form</field>
         </record>
 
-        <menuitem
-            id="open_academy_root"
-            name="Open Academy"/>
         <menuitem
             id="open_academy_course"
             name="Course"

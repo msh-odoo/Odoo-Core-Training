@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record id="assign_instructor_form" model="ir.ui.view">
+            <field name="name">assign.instructor.form</field>
+            <field name="model">assign.instructor</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="instructor_id"/>
+                    </group>
+                    <footer>
+                        <button name="action_assign_instructor" type="object" string="Assign Instructor" class="btn-primary"/>
+                        <button name="Cancel" special="cancel" string="Cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_assign_instructor_wizard" model="ir.actions.act_window">
+            <field name="name">Assign Session</field>
+            <field name="res_model">assign.instructor</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="binding_model_id" ref="open_academy.model_course_session"/>
+        </record>
+    </data>
+</odoo>

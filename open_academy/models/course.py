@@ -3,6 +3,9 @@ from odoo.exceptions import UserError
 
 class Course(models.Model):
     _name = "course.course"
+    _inherit = [
+        'image.mixin',
+    ]
 
     name = fields.Char(string="Name of the Course", help="This contains course name", copy=False, required=True, translate=True)
     description = fields.Html(readonly=True, states={'new': [('readonly', False)]})
@@ -32,4 +35,3 @@ class Course(models.Model):
             pass
             # Your logic to perform something
         return super().write(vals)
-    

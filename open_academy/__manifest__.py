@@ -8,6 +8,7 @@ for institutes""",
     'depends' : ['mail'],
     'website' : 'http://www.odoo.com',
     'data' : [
+        'security/open_academy_security.xml',
         'security/ir.model.access.csv',
         'views/open_academy_menus.xml',
         'views/session_views.xml',

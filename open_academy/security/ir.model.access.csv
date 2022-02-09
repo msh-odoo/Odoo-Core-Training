@@ -1,4 +1,8 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_open_academy_course_base_user,open.academy.course.base.user,model_course_course,base.group_user,1,1,1,1
-access_open_academy_session_base_user,open.academy.session.base.user,model_course_session,base.group_user,1,1,1,1
+access_open_academy_course_student,open.academy.course.student,model_course_course,group_open_academy_student,1,0,0,0
+access_open_academy_course_instructor,open.academy.course.instructor,model_course_course,group_open_academy_instructor,1,0,0,0
+access_open_academy_course_admin,open.academy.course.admin,model_course_course,group_open_academy_admin,1,1,1,1
+access_open_academy_session_student,open.academy.session.student,model_course_session,group_open_academy_student,1,0,0,0
+access_open_academy_session_instructor,open.academy.session.instructor,model_course_session,group_open_academy_instructor,1,1,1,0
+access_open_academy_session_admin,open.academy.session.admin,model_course_session,group_open_academy_admin,1,1,1,1
 open_academy.access_assign_instructor,access_assign_instructor,open_academy.model_assign_instructor,base.group_user,1,1,1,1

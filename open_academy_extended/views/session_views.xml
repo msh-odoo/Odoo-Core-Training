@@ -8,6 +8,7 @@
             <field name="arch" type="xml">
                 <!-- <xpath expr="//field[@name='course_id']" position="attributes">
                     <attribute name="required">1</attribute>
+                    <attribute name="readonly">1</attribute>
                 </xpath> -->
                 <!-- position can be replace, inside, after, before, attributes -->
                 <field name="course_id" position="attributes">

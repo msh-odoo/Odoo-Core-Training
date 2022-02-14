@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="my_template">
+        <span class="font-weight-bold">Hello World</span>
+    </template>
+
+    <template id="my_template_user">
+        <span class="font-weight-bold">Hello <t t-out="name" /></span>
+    </template>
+
+    <template id="qweb_template_table_body" name="Table Body">
+        <t t-set="sr_no" t-value="1"/>
+        <tr t-att-class="sr_no % 2 == 0 and 'o_even' or 'o_odd'" t-attf-style="background-color: #{colors.get(sr_no, 'white')}" t-if="course.session_ids" t-foreach="courses" t-as="course">
+            <td><span t-out="sr_no"/></td>
+            <td><span t-field="course.name"/></td>
+            <td><span t-field="course.state"/></td>
+            <td><t t-out="len(course.session_ids)"/></td>
+            <t t-set="sr_no" t-value="sr_no + 1"/>
+        </tr>
+        <tr t-else="">
+            <td colspan="4"><t t-out="message"/></td>
+        </tr>
+    </template>
+
+    <template id="qweb_template_example" name="My Qweb Example">
+        <div class="container">
+            <table>
+                <thead>
+                    <th>Sr. No.</th>
+                    <th>Course Name</th>
+                    <th>Course State</th>
+                    <th>Total Sessions</th>
+                </thead>
+                <tbody>
+                    <!-- <t t-set="sr_no" t-value="1"/>
+                    <tr t-att-class="sr_no % 2 == 0 and 'o_even' or 'o_odd'" t-attf-style="background-color: #{colors.get(sr_no, 'white')}" t-if="course.session_ids" t-foreach="courses" t-as="course">
+                        <td><span t-out="sr_no"/></td>
+                        <td><span t-field="course.name"/></td>
+                        <td><span t-field="course.state"/></td>
+                        <td><t t-out="len(course.session_ids)"/></td>
+                        <t t-set="sr_no" t-value="sr_no + 1"/>
+                    </tr>
+                    <tr t-else="">
+                        <td colspan="4">No Sessions available.</td>
+                    </tr> -->
+                    <t t-call="open_academy.qweb_template_table_body">
+                        <t t-set="message">There is no Sessions available related to course.</t>
+                    </t>
+                </tbody>
+            </table>
+        </div>
+    </template>
+
+    <template id="subtemplate" name="subtemplate">
+        <div style="width: 100%; height: 100%;">
+            <t t-out="0"/>
+        </div>
+    </template>
+
+    <template id="test_tcall" name="Test Tcall">
+        <t t-call="open_academy.subtemplate">
+            <div>Hello World</div>
+        </t>
+    </template>
+
+    <template id="web_page" name="Web Page">
+        <t t-call="website.layout">
+            <div class="container font-weight-bold text-center mt16">
+                <div class="table-layout">
+                    <table class="table">
+                        <thead>
+                            <th>Course Name</th>
+                            <th>State</th>
+                            <th>Total No. Of Sessions</th>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="courses" t-as="course">
+                                <td><a t-attf-href="/course_details/#{course.id}"><span t-field="course.name" /></a></td>
+                                <td><span t-field="course.state" /></td>
+                                <td><span t-out="len(course.session_ids)" /></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="course_details" name="course_details">
+        <t t-call="website.layout">
+            <div class="container">
+                <div><span t-field="course.name"/></div>
+            </div>
+        </t>
+    </template>
+
+</odoo>
